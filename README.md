@@ -3,11 +3,9 @@ Files:
 01_singly_linked_list.c
 02_doubly_linked_list.c
 03_circular_linked_list.c
-04_experiment
-stack_using_array
+04_experiment. stack_using_array
 stack_using_linked_list
-05_experiment
-infix_to_postfix.c
+05_experiment infix_to_postfix.c
 postfix_evaluation.c
 06_queue_implementation
 queue_array.c
