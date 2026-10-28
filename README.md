@@ -3,9 +3,11 @@ Files:
 01_singly_linked_list.c
 02_doubly_linked_list.c
 03_circular_linked_list.c
-04_experiment. stack_using_array
+04_experiment. 
+stack_using_array
 stack_using_linked_list
-05_experiment infix_to_postfix.c
+05_experiment 
+infix_to_postfix.c
 postfix_evaluation.c
 06_queue_implementation
 queue_array.c
@@ -19,10 +21,4 @@ queue_linkedList.c
 13_graph_bfs_dfs_adjacency_matrix.c
 14_floyd_warshall.c
 15_dijkstra.c
-Notes:
 
-Floyd-Warshall uses INF = 1e7 as required by the lab specification.
-Dijkstra uses INF = 1e7 for absent edges in this implementation and assumes non-negative edge weights.
-BST programs ignore duplicate keys unless otherwise stated.
-Program 05 uses single-digit operands for postfix evaluation.
-folder 4,5,6 contains their respective programs.
