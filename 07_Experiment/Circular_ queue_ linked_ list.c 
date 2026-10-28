@@ -1,0 +1,174 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node *front = NULL;
+struct Node *rear = NULL;
+
+struct Node* createNode(int value) {
+    struct Node *newNode;
+
+    newNode = (struct Node*)malloc(sizeof(struct Node));
+
+    if (newNode == NULL) {
+        printf("Memory allocation failed!\n");
+        exit(1);
+    }
+
+    newNode->data = value;
+    newNode->next = NULL;
+
+    return newNode;
+}
+
+void enqueue() {
+    int value;
+    struct Node *newNode;
+
+    printf("Enter element to insert: ");
+    scanf("%d", &value);
+
+    newNode = createNode(value);
+
+    if (front == NULL) {
+        front = rear = newNode;
+        rear->next = front;
+    } else {
+        rear->next = newNode;
+        rear = newNode;
+        rear->next = front;
+    }
+
+    printf("%d inserted into circular queue.\n", value);
+}
+
+void dequeue() {
+    struct Node *temp;
+
+    if (front == NULL) {
+        printf("Queue Underflow! Queue is empty.\n");
+        return;
+    }
+
+    temp = front;
+
+    if (front == rear) {
+        front = rear = NULL;
+    } else {
+        front = front->next;
+        rear->next = front;
+    }
+
+    printf("Deleted element: %d\n", temp->data);
+    free(temp);
+}
+
+void peek() {
+    if (front == NULL) {
+        printf("Circular queue is empty.\n");
+        return;
+    }
+
+    printf("Front element: %d\n", front->data);
+}
+
+void display() {
+    struct Node *temp;
+
+    if (front == NULL) {
+        printf("Circular queue is empty.\n");
+        return;
+    }
+
+    temp = front;
+
+    printf("Circular Queue: ");
+
+    do {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    } while (temp != front);
+
+    printf("\n");
+}
+
+void search() {
+    struct Node *temp;
+    int value, position = 1;
+
+    if (front == NULL) {
+        printf("Circular queue is empty.\n");
+        return;
+    }
+
+    printf("Enter element to search: ");
+    scanf("%d", &value);
+
+    temp = front;
+
+    do {
+        if (temp->data == value) {
+            printf("%d found at position %d.\n",
+                   value, position);
+            return;
+        }
+
+        temp = temp->next;
+        position++;
+
+    } while (temp != front);
+
+    printf("%d not found in circular queue.\n", value);
+}
+
+int main() {
+    int choice;
+
+    while (1) {
+        printf("\n===== CIRCULAR QUEUE USING LINKED LIST =====\n");
+        printf("1. Enqueue (Insert)\n");
+        printf("2. Dequeue (Delete)\n");
+        printf("3. Peek\n");
+        printf("4. Display\n");
+        printf("5. Search\n");
+        printf("6. Exit\n");
+
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                enqueue();
+                break;
+
+            case 2:
+                dequeue();
+                break;
+
+            case 3:
+                peek();
+                break;
+
+            case 4:
+                display();
+                break;
+
+            case 5:
+                search();
+                break;
+
+            case 6:
+                printf("Program terminated.\n");
+                exit(0);
+
+            default:
+                printf("Invalid choice! Try again.\n");
+        }
+    }
+
+    return 0;
+}
